@@ -1,28 +1,18 @@
 const express = require('express')
 const router = express.Router()
+const productMid = require('../middlewares/product.middleware')
+
+router.post('/', productMid)
 
 router.get('/', (request, response) => {
   response.send({ message: "Hi, i'm router product GET!" })
 })
 
 router.post('/', (request, response) => {
-  response.send({ message: "Hi, i'm router product POST!" })
-})
-
-router.get('/:id_produto', (request, response) => {
-  const id = request.params.id_produto
-  response.send({
-    message: "Usando o GET product de um produto específico!",
-    id: id
+  return response.send({
+    message: 'Produto inserido com sucesso!',
   })
 })
 
-router.patch('/', (request, response) => {
-  response.send({ message: "Hi, i'm router product PATCH!" })
-})
-
-router.delete('/', (request, response) => {
-  response.send({ message: "Hi, i'm router product DELETE!" })
-})
 
 module.exports = router

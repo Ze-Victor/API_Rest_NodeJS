@@ -3,12 +3,26 @@ const app = express()
 const morgan = require('morgan')
 
 const productRoutes = require('./routes/productRoutes')
-const requestProductRoutes = require('./routes/requestProductRoutes')
 
 app.use(morgan('dev'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.use((request, response, next) => {
+  response.header('Acess-Control-Allow-Origin', '*'),
+    response.header(
+      'Acess-Control-Allow-Header',
+      'Origin,X-Requested-With, Accept, Authorization, Content-Type'
+    )
+  if (request.header = 'OPTIONS') {
+    response.header('Acess-Control-Allow-Methods', 'PUT, PATCH, DELETE, POST, GET')
+  }
+
+  next()
+
+})
 
 app.use('/product', productRoutes)
-app.use('/requestProduct', requestProductRoutes)
 
 app.use((request, response, next) => {
   const erro = new Error("Não encontrado!")
