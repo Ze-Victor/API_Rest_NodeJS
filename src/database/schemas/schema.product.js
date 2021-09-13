@@ -5,6 +5,6 @@ module.exports = {
     nome: { type: "string" },
     preco: { type: "number" }
   },
-  required: ["id", "nome", "preco"],
+  required: ["nome", "preco"],
   additionalProperties: false,
 }
