@@ -1,5 +1,6 @@
 exports.up = async (knex) => knex.schema.createTable('product', (table) => {
   table.increments('id').primary();
+  table.string('codigo').notNullable();
   table.string('nome').notNullable();
   table.decimal('preco').notNullable();
   table.timestamp('created_at').defaultTo(knex.fn.now());
